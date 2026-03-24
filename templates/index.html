@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Fake News Detector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #f7f9fc;
+            color: #333;
+            padding: 30px;
+            border-radius: 15px;
+            width: 500px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #2a5298;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            resize: none;
+        }
+
+        button {
+            background: #2a5298;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #1e3c72;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .fake {
+            background: #ffe6e6;
+            color: #b30000;
+        }
+
+        .real {
+            background: #e6ffe6;
+            color: #006600;
+        }
+
+        .confidence {
+            font-weight: bold;
+        }
+
+        .words {
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🧠 AI Fake News Detector</h1>
+
+    <form method="POST">
+        <textarea name="news" rows="5" placeholder="Enter news text...">{{ news }}</textarea>
+        <br>
+        <button type="submit">Check</button>
+    </form>
+
+    {% if result %}
+        <div class="result {{ 'fake' if result.label == 'Fake News' else 'real' }}">
+            <h2>{{ result.label }}</h2>
+            <p class="confidence">Confidence: {{ result.confidence }}%</p>
+            <p class="words">Important Words: {{ result.words }}</p>
+        </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
+
+
